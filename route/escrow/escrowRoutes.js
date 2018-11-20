@@ -10,6 +10,8 @@ module.exports = (app) => {
     // add currency (BTC , etc )
     app.post('/api/add/currency', escrowControler.addCurrency)
 
+    app.get('/api/getAllCurrency' , escrowControler.getAllCurrency)
+
 
 
     // start ascrew process

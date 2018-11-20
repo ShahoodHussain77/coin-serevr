@@ -91,7 +91,7 @@ module.exports = {
                 if (response !== null) {
                     var id = response._id.toString()
                     var currencyid = id.slice(id.length - 5)
-                    curreny.findByIdAndUpdate({ _id: response._id }, { $set: { currencyId: currencyid } }, function (err, doc) { 
+                    curreny.findByIdAndUpdate({ _id: response._id }, { $set: { currencyId: currencyid } }, function (err, doc) {
                         if (err) {
                             res.send({ message: 'Error', response: false, })
                         }
@@ -102,5 +102,19 @@ module.exports = {
             .catch((err) => {
                 res.send(err)
             })
+    },
+
+
+
+    getAllCurrency: (req, res, next) => {
+        curreny.find()
+        .then((response)=>{
+            res.send(response)
+        })
+
+        .catch((err)=>{
+            res.send(err)
+            
+        })
     }
 }
