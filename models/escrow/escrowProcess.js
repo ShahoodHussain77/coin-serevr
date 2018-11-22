@@ -2,7 +2,34 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 
-const currency = require("./currenySchema")
+
+
+
+const currency = new Schema({
+
+
+    currencyName: {
+        type: String,
+        required: true,
+    },
+
+    currencyShort: {
+        type: String,
+        required: true,
+    },
+
+    isActive: {
+        type: Boolean,
+    },
+    currencyId: {
+        type: String,
+    }
+})
+
+
+
+
+
 
 const escrowProcess = new Schema({
 
@@ -32,7 +59,7 @@ const escrowProcess = new Schema({
     },
 
     // BTC etc
-    // amountType: [currency],
+    amountType: [currency],
 
     // fee paid by 
     paidBy: {
@@ -56,8 +83,14 @@ const escrowProcess = new Schema({
     seller: {
         type: Boolean,
         required: true,
+    },
+    transactionKey: {
+        type: String,
+    },
+    passKey: {
+        type: String,
     }
- 
+
 })
 
 const escrow = mongoose.model("escrow", escrowProcess)

@@ -25,7 +25,16 @@ module.exports = {
         escrow.create(req.body)
             .then((res) => {
 
-                var output = `<div style="padding-bottom: 5%; background: #497c93; font-family: Comic Sans MS; color: white">
+
+
+
+
+                escrow.findByIdAndUpdate({ _id: res._id }, { $set: { transactionKey: key, passKey: pass } }, function (err, doc) {
+                    if (err) {
+                        res.send({ message: 'Error', response: false, })
+                    }
+
+                    var output = `<div style="padding-bottom: 5%; background: #497c93; font-family: Comic Sans MS; color: white">
                 <div style="padding-top: 5%;padding-bottom: 5%;width: 100%;text-align: center;">
                     <!-- <img src="logo.png" style="height: 10%;width: 12%" alt="Coin Grace"> -->
                     <div>Coin Grace</div>
@@ -45,29 +54,30 @@ module.exports = {
                 <div style="color: white; font-size: 12px; padding-top: 12px ; text-align: center">More information visit www.coingrace.com</div>
                 <div style="color: white; font-size: 12px; padding-top: 12px ; text-align: center">feel free to contact us at any time on info@coingrace.com</div>
                 </div>`
-                var emails = buyerEmail + ',' + sellerEmail
-                const mailOptions = {
-                    from: "coin grace",
-                    to: emails,
-                    subject: "Activation Keys",
-                    generateTextFromHTML: true,
-                    html: output
-                };
-                email(mailOptions)
-                    .then((response) => {
-                        if (response === true) {
-                            resp.status(200).json({
-                                error: false,
-                                message: 'Email sent successfully'
-                            })
-                        }
-                        else {
-                            resp.status(200).json({
-                                error: true,
-                                message: 'Invalid email'
-                            })
-                        }
-                    })
+                    var emails = buyerEmail + ',' + sellerEmail
+                    const mailOptions = {
+                        from: "coin grace",
+                        to: emails,
+                        subject: "Activation Keys",
+                        generateTextFromHTML: true,
+                        html: output
+                    };
+                    email(mailOptions)
+                        .then((response) => {
+                            if (response === true) {
+                                resp.status(200).json({
+                                    error: false,
+                                    message: 'Email sent successfully'
+                                })
+                            }
+                            else {
+                                resp.status(200).json({
+                                    error: true,
+                                    message: 'Invalid email'
+                                })
+                            }
+                        })
+                })
             })
             .catch((err) => {
                 resp.status(404).json({
@@ -108,13 +118,13 @@ module.exports = {
 
     getAllCurrency: (req, res, next) => {
         curreny.find()
-        .then((response)=>{
-            res.send(response)
-        })
+            .then((response) => {
+                res.send(response)
+            })
 
-        .catch((err)=>{
-            res.send(err)
-            
-        })
+            .catch((err) => {
+                res.send(err)
+
+            })
     }
 }

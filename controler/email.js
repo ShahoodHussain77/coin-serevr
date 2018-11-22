@@ -6,14 +6,14 @@ const OAuth2 = google.auth.OAuth2;
 
 
 const oauth2Client = new OAuth2(
-    "1063247534350-lmgnqtt48kpav0akni19vko0nccea0g7.apps.googleusercontent.com",
-    "35dDtHk2rX8BETJmafwwj7Dw", // Client Secret
+    "1030721971064-jem2tociul7g1p9da20cml4stqgumejb.apps.googleusercontent.com",
+    "rcWEQBk8XUCSdFLlf1P9xXnF", // Client Secret
     "https://developers.google.com/oauthplayground" // Redirect URL
 );
 
 
 oauth2Client.setCredentials({
-    refresh_token: "1/RTImtpEkF5o2KYXRFbtrjatXFJzlkV0dI2ZR5hN_bzdckdEKhRY0_kHaZMwLvCKb"
+    refresh_token: "1/NcIXU1klvPf_4dPLlkud6N0MR92qH7159E9quN4D43A"
 });
 
 const accessToken = oauth2Client.refreshAccessToken()
@@ -27,22 +27,14 @@ const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     auth: {
         type: "OAuth2",
-        user: "siddimuaz@gmail.com",
-        clientId: "1063247534350-lmgnqtt48kpav0akni19vko0nccea0g7.apps.googleusercontent.com",
-        clientSecret: "35dDtHk2rX8BETJmafwwj7Dw",
-        refreshToken: "1/RTImtpEkF5o2KYXRFbtrjatXFJzlkV0dI2ZR5hN_bzdckdEKhRY0_kHaZMwLvCKb",
+        user: "no-reply@coingrace.com",
+        clientId: "1030721971064-jem2tociul7g1p9da20cml4stqgumejb.apps.googleusercontent.com",
+        clientSecret: "rcWEQBk8XUCSdFLlf1P9xXnF",
+        refreshToken: "1/NcIXU1klvPf_4dPLlkud6N0MR92qH7159E9quN4D43A",
         accessToken: accessToken
     }
 });
-
-//<img src="logo.png" style="height: 30%;width: 30%" alt="Coin Grace" href="./logo.png">
-
-
-
-
-
-
-
+  
 async function sendEmail(mailOptions) {
     
     var resp;
