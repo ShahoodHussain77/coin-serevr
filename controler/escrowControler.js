@@ -126,5 +126,30 @@ module.exports = {
                 res.send(err)
 
             })
-    }
+    },
+
+
+
+
+
+
+    escrowFormDetail: (req, res, next) => {
+
+        var Key = req.body.transactionKey
+        var pass = req.body.passKey
+
+
+        escrow.find({
+            $and: [
+                { transactionKey: req.body.transactionKey },
+                { passKey: req.body.passKey }
+            ]
+        })
+            .then((ress) => {
+                res.send(ress)
+            })
+            .catch((errr) => {
+                res.send(errr)
+            })
+    },
 }

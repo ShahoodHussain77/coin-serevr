@@ -7,9 +7,7 @@ var mongoose = require('mongoose')
 var escrowRoutes = require("./route/escrow/escrowRoutes")
 
 var constants = require('./constants')
-var cors = require('cors')
 
-app.use(cors())
 mongoose.connect(constants.BASE_URL,
     {
         // useMongoClient: true

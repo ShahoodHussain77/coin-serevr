@@ -66,12 +66,6 @@ const escrowProcess = new Schema({
         type: String,
         required: true,
     },
-
-    feePercentage: {
-        type: Number,
-        required: true,
-    },
-
     message: {
         type: String,
         required: true,
